@@ -4,14 +4,30 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: python -m pip install -r requirements.txt
-      - run: ./run_public_demo.sh
+      - run: bash run_all_demos.sh
       - run: docker build -t predictive-production-state-engineering .
+      - run: docker run --rm predictive-production-state-engineering
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-forecasting-evidence
+          path: |
+            outputs/metrics.json
+            outputs/report.md
+            outputs/dashboard.html
+            outputs/ml/*.csv
+            outputs/ml/*.json
+            outputs/ml/*.joblib
+            outputs/ml/*.duckdb

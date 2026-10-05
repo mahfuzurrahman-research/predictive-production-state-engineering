@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
+cd "$(dirname "$0")"
 export PYTHONPATH="$PWD:${PYTHONPATH:-}"
-rm -rf outputs/*
+mkdir -p outputs
 python3 -m src.forecast_demo.generate
 python3 examples/run_forecast_demo.py
 python3 examples/run_recovery_demo.py
