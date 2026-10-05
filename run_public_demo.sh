@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PYTHONPATH="$PWD:${PYTHONPATH:-}"
 rm -rf outputs/*
 python -m src.forecast_demo.generate
 python examples/run_forecast_demo.py
