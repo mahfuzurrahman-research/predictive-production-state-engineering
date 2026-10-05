@@ -118,6 +118,5 @@ A reviewer can inspect and execute the full synthetic workflow from data generat
 ## Author
 
 **Mahfuzur Rahman**  
-Independent Researcher — Public Administration & Algorithmic Governance
 
 See `COPYRIGHT.md` and `docs/engineering_scope.md`.
